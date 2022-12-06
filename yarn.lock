@@ -2632,20 +2632,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-netlify-starter@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "next-netlify-starter@workspace:."
-  dependencies:
-    "@stylable/webpack-plugin": ^5.4.0
-    css-loader: ^6.7.2
-    cypress: ^10.0.3
-    next: ^12.1.5
-    react: ^18.0.0
-    react-dom: ^18.0.0
-    wix-style-react: ^10.61.4
-  languageName: unknown
-  linkType: soft
-
 "next@npm:^12.1.5":
   version: 12.3.4
   resolution: "next@npm:12.3.4"
@@ -3394,6 +3380,20 @@ __metadata:
   checksum: 88e38092da8839b830cda6feef2e8505dec8ace60579e46aa5490fc3dc9bba0bd50336507dc166f43e3afc1c42939c09fe33b25fae889d6f402721dcd78fca1b
   languageName: node
   linkType: hard
+
+"read-env-vars@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "read-env-vars@workspace:."
+  dependencies:
+    "@stylable/webpack-plugin": ^5.4.0
+    css-loader: ^6.7.2
+    cypress: ^10.0.3
+    next: ^12.1.5
+    react: ^18.0.0
+    react-dom: ^18.0.0
+    wix-style-react: ^10.61.4
+  languageName: unknown
+  linkType: soft
 
 "readable-stream@npm:~2.3.6":
   version: 2.3.7
