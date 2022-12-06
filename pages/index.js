@@ -32,7 +32,6 @@ export default function Home() {
         BOOKINGS_API_KEY: apiKey,
         BOOKINGS_SITE_ID: metasiteId,
         NEXT_PUBLIC_BOOKINGS_CHECKOUT_URL: `${sites[0].viewUrl}/booking-form?dayful=sch`
-
       }))
     }
   }, [apiKey, metasiteId, accountId]);
