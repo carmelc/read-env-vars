@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 
 // wix-style-react is not SSR friendly :(
 const FunnelNoSSR = dynamic(
-  () => import('../components/Funnel'),
+  () => import('@components/Funnel'),
   { ssr: false }
 )
 
