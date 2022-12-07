@@ -1,4 +1,4 @@
-import {Button, Card, Cell, Layout, Page} from "wix-style-react";
+import {Button, Card, Cell, Layout, Page, Box} from "wix-style-react";
 import {useCallback} from "react";
 import Footer from "@components/Footer";
 
@@ -12,32 +12,30 @@ export default function Funnel() {
   }, []);
 
   return (
-    <Page height="100vh">
-      <Page.Header title="Integrate Netlify/Vercel with Wix Bookings"></Page.Header>
-      <Page.Content>
-        <Layout>
-          <Cell>
-            <Card>
-              <Card.Header
-                title="You will now be redirected to a site selector"
-                suffix={
-                  <Button size="small" onClick={onClickNext}>
-                    Next
-                  </Button>
-                }
-              />
-              <Card.Divider/>
-            </Card>
-          </Cell>
-        </Layout>
-      </Page.Content>
-      <Page.FixedFooter>
-        <Page.Footer>
-          <Page.Footer.Center>
-            <Footer/>
-          </Page.Footer.Center>
-        </Page.Footer>
-      </Page.FixedFooter>
+    <>
+      <Page height="100vh">
+        <Page.Header title="Integrate Netlify/Vercel with Wix Bookings"></Page.Header>
+        <Page.Content>
+          <Box paddingBottom="100px" display="block">
+            <Layout>
+              <Cell>
+                <Card>
+                  <Card.Header
+                    title="You will now be redirected to a site selector"
+                    suffix={
+                      <Button size="small" onClick={onClickNext}>
+                        Next
+                      </Button>
+                    }
+                  />
+                  <Card.Divider/>
+                </Card>
+              </Cell>
+            </Layout>
+          </Box>
+        </Page.Content>
     </Page>
+    <Footer/>
+  </>
   );
 }
