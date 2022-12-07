@@ -1,5 +1,6 @@
 import {Button, Card, Cell, Layout, Page} from "wix-style-react";
 import {useCallback} from "react";
+import Footer from "@components/Footer";
 
 export default function Funnel() {
   const onClickNext = useCallback(() => {
@@ -30,6 +31,13 @@ export default function Funnel() {
           </Cell>
         </Layout>
       </Page.Content>
+      <Page.FixedFooter>
+        <Page.Footer>
+          <Page.Footer.Center>
+            <Footer/>
+          </Page.Footer.Center>
+        </Page.Footer>
+      </Page.FixedFooter>
     </Page>
   );
 }

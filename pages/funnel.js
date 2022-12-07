@@ -11,7 +11,6 @@ function Funnel() {
   return (
     <>
       <FunnelNoSSR/>
-      <Footer/>
     </>
   )
 }

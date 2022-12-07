@@ -1,7 +1,7 @@
-import {Box, CopyClipboard, TextButton} from 'wix-style-react'
 import {useCallback, useEffect, useState} from 'react';
 import {Button, Card, Cell, FormField, Input, InputArea, Layout, Page, Text, Notification} from "wix-style-react";
 import DeployResults from "@components/DeployResults";
+import Footer from "@components/Footer";
 
 export default function Results() {
   const [envVars, setEnvVars] = useState(null);
@@ -104,6 +104,13 @@ export default function Results() {
           </Cell>
         </Layout>
       </Page.Content>
+      <Page.FixedFooter>
+        <Page.Footer>
+          <Page.Footer.Center>
+            <Footer/>
+          </Page.Footer.Center>
+        </Page.Footer>
+      </Page.FixedFooter>
     </Page>
   )
 }

@@ -11,7 +11,6 @@ function Results() {
   return (
     <>
       <ResultsNoSSR/>
-      <Footer/>
     </>
   )
 }
