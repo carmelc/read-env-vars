@@ -31,13 +31,6 @@ export default function Funnel() {
           </Cell>
         </Layout>
       </Page.Content>
-      <Page.FixedFooter>
-        <Page.Footer>
-          <Page.Footer.Center>
-            <Footer/>
-          </Page.Footer.Center>
-        </Page.Footer>
-      </Page.FixedFooter>
     </Page>
   );
 }
