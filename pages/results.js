@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+import Footer from "@components/Footer";
 
 // wix-style-react is not SSR friendly :(
 const ResultsNoSSR = dynamic(
@@ -10,6 +11,7 @@ function Results() {
   return (
     <>
       <ResultsNoSSR/>
+      <Footer/>
     </>
   )
 }
