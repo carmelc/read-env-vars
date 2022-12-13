@@ -1,3 +1,3 @@
-import Funnel from './funnel';
+import FunnelNetlify from './funnel-netlify';
 
-export default Funnel;
+export default FunnelNetlify;

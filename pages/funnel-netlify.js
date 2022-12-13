@@ -3,11 +3,11 @@ import Footer from "@components/Footer";
 
 // wix-style-react is not SSR friendly :(
 const FunnelNoSSR = dynamic(
-  () => import('@components/Funnel'),
+  () => import('@components/FunnelNetlify'),
   { ssr: false }
 )
 
-function Funnel() {
+function FunnelNetlify() {
   return (
     <>
       <FunnelNoSSR/>
@@ -15,4 +15,4 @@ function Funnel() {
   )
 }
 
-export default Funnel
+export default FunnelNetlify

@@ -3,6 +3,7 @@ import {Card, Cell, FormField, Input, InputArea, Layout} from "wix-style-react";
 import {useEffect, useState} from "react";
 
 export default function DeployResults({envVars}) {
+  const provider = new URLSearchParams(window.location.hash.slice(1)).get('provider');
   const [vercelUrl, setVercelUrl] = useState('');
   const [netlifyUrl, setNetlifyUrl] = useState('');
   useEffect(() => {
@@ -25,22 +26,22 @@ export default function DeployResults({envVars}) {
       <Card>
         <Card.Header
           title="Data generated successfully"
-          subtitle="You can now create an headless project in Vercel/Netlify. You should define the following Environment Variables in your project"
+          subtitle="Please verify that the following Environment Variables are defined automatically in your project, you can also copy the generated dotenv file for local development"
           suffix={
             <Box align="center" verticalAlign="middle" gap={1}>
-              <a href={vercelUrl} target="_blank">
+              {(!provider || provider === 'vercel') ? <a href={vercelUrl} target="_blank">
                 <img src="https://vercel.com/button" alt="" title="Deploy with Vercel"/>
-              </a>
-              <a href={netlifyUrl} target="_blank">
+              </a> : null}
+              {(!provider || provider === 'netlify') ? <a href={netlifyUrl} target="_blank">
                 <img src="https://www.netlify.com/img/deploy/button.svg" alt="" title="Deploy to Netlify"/>
-              </a>
+              </a> : null}
             </Box>
           }
         />
         <Card.Content>
           <Layout gap="24px">
             {Object.keys(envVars).map(envVar => (
-              <Cell>
+              <Cell key={envVar}>
                 <FormField label={envVar}>
                   <CopyClipboard value={envVars[envVar]} resetTimeout={2000}>
                     {({isCopied, copyToClipboard}) => (
