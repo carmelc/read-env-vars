@@ -4,9 +4,10 @@ import Footer from "@components/Footer";
 
 export default function FunnelNetlify() {
   const onClickNext = useCallback(() => {
+    const redirect = new URL(window.location.href).searchParams.get('redirect') ?? 'true';
     const baseUrl = 'https://manage.wix.com/_api/wix-anywhere-embed/headless-funnel-redirect';
     const targetUrl = new URL('https://manage.wix.com/account/site-selector');
-    targetUrl.searchParams.set('actionUrl', `${baseUrl}/{metaSiteId}#provider=netlify`);
+    targetUrl.searchParams.set('actionUrl', `${baseUrl}/{metaSiteId}#provider=netlify&redirect=${redirect}`);
     targetUrl.searchParams.set('title', 'Please Select the site You wish to connect to Netlify');
     window.open(targetUrl.toString());
   }, []);

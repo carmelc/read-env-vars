@@ -5,6 +5,7 @@ import {router} from "next/client";
 export default function DeployResults({envVars}) {
   const params = new URLSearchParams(window.location.hash.slice(1));
   const provider = params.get('provider');
+  const redirect = params.get('redirect');
   const [netlifyUrl, setNetlifyUrl] = useState('');
 
   const addEnvVarsToVercel = async () => {
@@ -28,9 +29,14 @@ export default function DeployResults({envVars}) {
     netlifyUrlObj.searchParams.set('repository', 'https://github.com/netanelgilad/wix-fitness-nextjs');
     netlifyUrlObj.hash = `${Object.keys(envVars).map(envVar => `${envVar}=${envVars[envVar]}`).join('&')}`
     setNetlifyUrl(netlifyUrlObj.toString());
+    const netlifyRedirectUrl = netlifyUrlObj.toString();
+    setNetlifyUrl(netlifyRedirectUrl);
+    if (redirect === 'true' && provider === 'netlify') {
+      window.location.href = netlifyRedirectUrl;
+    }
   }, [envVars]);
   return (
-    <Box marginTop="SP2" display="block">
+    redirect === 'true' && provider ? null : (<Box marginTop="SP2" display="block">
       <Card>
         <Card.Header
           title="Data generated successfully"
@@ -80,6 +86,6 @@ export default function DeployResults({envVars}) {
           </Layout>
         </Card.Content>
       </Card>
-    </Box>
+    </Box>)
   )
 }

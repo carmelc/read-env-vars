@@ -22,6 +22,7 @@ const StorageKeys = {
 };
 
 export default function Results() {
+  const redirect = new URLSearchParams(window.location.hash.slice(1)).get('redirect');
   const [envVars, setEnvVars] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [hasErrors, setHasErrors] = useState(false);
@@ -55,7 +56,7 @@ export default function Results() {
         setEnvVars({
           BOOKINGS_API_KEY: apiKey,
           BOOKINGS_SITE_ID: metasiteId,
-          NEXT_PUBLIC_BOOKINGS_CHECKOUT_URL: `${sites[0].viewUrl}/booking-form?dayful=sch`
+          NEXT_PUBLIC_BOOKINGS_CHECKOUT_URL: encodeURIComponent(`${sites[0].viewUrl}/booking-form?dayful=sch`)
         });
         localStorage.setItem(StorageKeys.apiKey, apiKey);
         localStorage.setItem(StorageKeys.accountId, accountId);
@@ -79,7 +80,7 @@ export default function Results() {
   return (
     <>
       <Page height="100vh">
-        <Page.Header title="Integrate Selected Provider with Wix Bookings"></Page.Header>
+        {redirect === 'true' ? null : <Page.Header title="Integrate Selected Provider with Wix Bookings"></Page.Header>}
         <Page.Content>
           {isLoading ? <Box padding="100px" align="center"><Loader size="large"/></Box> :
             <Box paddingBottom="100px" display="block">
@@ -97,7 +98,7 @@ export default function Results() {
                       title="API Key/Account Id not found on local storage, please provide required information"
                       suffix={
                         <Button size="small" disabled={!accountId || !apiKey} onClick={onGenerate}>
-                          Generate
+                          {redirect === 'true' ? 'Redirect' : 'Generate'}
                         </Button>
                       }
                     />
