@@ -11,6 +11,7 @@ import {
   Text,
   Notification,
   Box,
+  Loader
 } from "wix-style-react";
 import DeployResults from "@components/DeployResults";
 import Footer from "@components/Footer";
@@ -80,7 +81,7 @@ export default function Results() {
       <Page height="100vh">
         <Page.Header title="Integrate Selected Provider with Wix Bookings"></Page.Header>
         <Page.Content>
-          {isLoading ? <Box padding="100px" align="center">Loading</Box> :
+          {isLoading ? <Box padding="100px" align="center"><Loader size="large"/></Box> :
             <Box paddingBottom="100px" display="block">
               <Layout>
                 <Cell>
