@@ -11,7 +11,7 @@ import {
   Text,
   Notification,
   Box,
-} from " wix-style-react";
+} from "wix-style-react";
 import DeployResults from "@components/DeployResults";
 import Footer from "@components/Footer";
 
