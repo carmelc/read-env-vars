@@ -31,8 +31,12 @@ export default function DeployResults({envVars}) {
     setNetlifyUrl(netlifyUrlObj.toString());
     const netlifyRedirectUrl = netlifyUrlObj.toString();
     setNetlifyUrl(netlifyRedirectUrl);
-    if (redirect === 'true' && provider === 'netlify') {
-      window.location.href = netlifyRedirectUrl;
+    if (redirect === 'true' && provider) {
+      if (provider === 'vercel') {
+        addEnvVarsToVercel();
+      } else {
+        router.push(netlifyRedirectUrl);
+      }
     }
   }, [envVars]);
   return (
