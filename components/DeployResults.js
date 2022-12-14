@@ -1,4 +1,4 @@
-import {Card, Cell, FormField, Input, InputArea, Layout, Button, Box, CopyClipboard, TextButton} from "wix-style-react";
+import {Card, Cell, FormField, Input, InputArea, Layout, TextButton, Box, CopyClipboard} from "wix-style-react";
 import {useEffect, useState} from "react";
 import {router} from "next/client";
 
@@ -37,9 +37,9 @@ export default function DeployResults({envVars}) {
           subtitle="Please verify that the following Environment Variables are defined automatically in your project, you can also copy the generated dotenv file for local development"
           suffix={
             <Box align="center" verticalAlign="middle" gap={1}>
-              {(!provider || provider === 'vercel') ? <Button onClick={addEnvVarsToVercel}>
-                Deploy
-              </Button> : null}
+              {(!provider || provider === 'vercel') ? <TextButton onClick={addEnvVarsToVercel}>
+                <img src="https://vercel.com/button" alt="" title="Deploy with Vercel"/>
+              </TextButton> : null}
               {(!provider || provider === 'netlify') ? <a href={netlifyUrl} target="_blank">
                 <img src="https://www.netlify.com/img/deploy/button.svg" alt="" title="Deploy to Netlify"/>
               </a> : null}
