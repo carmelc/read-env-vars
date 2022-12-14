@@ -1,25 +1,33 @@
-import {Box, CopyClipboard, TextButton} from 'wix-style-react'
-import {Card, Cell, FormField, Input, InputArea, Layout} from "wix-style-react";
+import {Card, Cell, FormField, Input, InputArea, Layout, Button, Box, CopyClipboard, TextButton} from "wix-style-react";
 import {useEffect, useState} from "react";
+import {router} from "next/client";
 
 export default function DeployResults({envVars}) {
-  const provider = new URLSearchParams(window.location.hash.slice(1)).get('provider');
-  const [vercelUrl, setVercelUrl] = useState('');
+  const params = new URLSearchParams(window.location.hash.slice(1));
+  const provider = params.get('provider');
   const [netlifyUrl, setNetlifyUrl] = useState('');
+
+  const addEnvVarsToVercel = async () => {
+      await fetch('/api/vercel-integration', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json, text/plain, */*',
+        },
+        body: JSON.stringify({
+          code: params.get('code'),
+          envVars,
+        })
+      });
+      router.push(params.get('next'));
+  };
+
   useEffect(() => {
-    const vercelUrlObj = new URL('https://vercel.com/new/clone');
     const netlifyUrlObj = new URL('https://app.netlify.com/start/deploy');
 
     netlifyUrlObj.searchParams.set('repository', 'https://github.com/netanelgilad/wix-fitness-nextjs');
     netlifyUrlObj.hash = `${Object.keys(envVars).map(envVar => `${envVar}=${envVars[envVar]}`).join('&')}`
     setNetlifyUrl(netlifyUrlObj.toString());
-
-    vercelUrlObj.searchParams.set('repository-url', 'https://github.com/netanelgilad/wix-fitness-nextjs');
-    vercelUrlObj.searchParams.set('env', Object.keys(envVars).join(','));
-    vercelUrlObj.searchParams.set('envDescription', 'Wix API and site details');
-    vercelUrlObj.searchParams.set('project-name', 'Wix Fitness Template');
-    vercelUrlObj.searchParams.set('envLink', 'https://manage.wix.com/account/api-keys');
-    setVercelUrl(vercelUrlObj.toString());
   }, [envVars]);
   return (
     <Box marginTop="SP2" display="block">
@@ -29,9 +37,9 @@ export default function DeployResults({envVars}) {
           subtitle="Please verify that the following Environment Variables are defined automatically in your project, you can also copy the generated dotenv file for local development"
           suffix={
             <Box align="center" verticalAlign="middle" gap={1}>
-              {(!provider || provider === 'vercel') ? <a href={vercelUrl} target="_blank">
-                <img src="https://vercel.com/button" alt="" title="Deploy with Vercel"/>
-              </a> : null}
+              {(!provider || provider === 'vercel') ? <Button onClick={addEnvVarsToVercel}>
+                Deploy
+              </Button> : null}
               {(!provider || provider === 'netlify') ? <a href={netlifyUrl} target="_blank">
                 <img src="https://www.netlify.com/img/deploy/button.svg" alt="" title="Deploy to Netlify"/>
               </a> : null}
