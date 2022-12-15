@@ -8,7 +8,7 @@ export default function FunnelNetlify() {
     const baseUrl = 'https://manage.wix.com/_api/wix-anywhere-embed/headless-funnel-redirect';
     const targetUrl = new URL('https://manage.wix.com/account/site-selector');
     targetUrl.searchParams.set('actionUrl', `${baseUrl}/{metaSiteId}#provider=netlify&redirect=${redirect}`);
-    targetUrl.searchParams.set('title', 'Please Select the site You wish to connect to Netlify');
+    targetUrl.searchParams.set('title', 'Please Select the business You wish to connect to Netlify');
     window.open(targetUrl.toString());
   }, []);
 
