@@ -35,7 +35,7 @@ const handler = async function (req, res) {
         body: JSON.stringify([{
             key: 'BOOKINGS_API_KEY',
             value: req.body.envVars.BOOKINGS_API_KEY,
-            type: 'plain',
+            type: 'secret',
             target: ['development', 'preview', 'production']
         }, {
             key: 'BOOKINGS_SITE_ID',
@@ -46,6 +46,12 @@ const handler = async function (req, res) {
             {
                 key: 'NEXT_PUBLIC_BOOKINGS_CHECKOUT_URL',
                 value: req.body.envVars.NEXT_PUBLIC_BOOKINGS_CHECKOUT_URL,
+                type: 'plain',
+                target: ['development', 'preview', 'production']
+            },
+            {
+                key: 'NEXT_PUBLIC_CONTACTS_FORM_ID',
+                value: req.body.envVars.NEXT_PUBLIC_CONTACTS_FORM_ID,
                 type: 'plain',
                 target: ['development', 'preview', 'production']
             }])
