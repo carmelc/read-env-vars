@@ -6,6 +6,7 @@ export default function DeployResults({envVars}) {
   const params = new URLSearchParams(window.location.hash.slice(1));
   const provider = params.get('provider');
   const redirect = params.get('redirect');
+  const repo = params.get('repo');
   const [netlifyUrl, setNetlifyUrl] = useState('');
 
   const addEnvVarsToVercel = async () => {
@@ -26,7 +27,7 @@ export default function DeployResults({envVars}) {
   useEffect(() => {
     const netlifyUrlObj = new URL('https://app.netlify.com/start/deploy');
 
-    netlifyUrlObj.searchParams.set('repository', 'https://github.com/netanelgilad/wix-fitness-nextjs');
+    netlifyUrlObj.searchParams.set('repository', repo);
     netlifyUrlObj.hash = `${Object.keys(envVars).map(envVar => `${envVar}=${envVars[envVar]}`).join('&')}`
     setNetlifyUrl(netlifyUrlObj.toString());
     const netlifyRedirectUrl = netlifyUrlObj.toString();

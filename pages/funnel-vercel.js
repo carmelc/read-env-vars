@@ -2,16 +2,16 @@ import dynamic from 'next/dynamic'
 
 // wix-style-react is not SSR friendly :(
 const FunnelNoSSR = dynamic(
-  () => import('@components/FunnelNetlify'),
+  () => import('@components/FunnelVercel'),
   { ssr: false }
 )
 
-function FunnelNetlify() {
+function FunnelVercel() {
   return (
     <>
-      <FunnelNoSSR />
+      <FunnelNoSSR/>
     </>
   )
 }
 
-export default FunnelNetlify
+export default FunnelVercel
