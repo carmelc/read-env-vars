@@ -32,24 +32,15 @@ const handler = async function (req, res) {
             Authorization: `Bearer ${accessToken}`
         },
         method: 'POST',
-        body: JSON.stringify([{
-            key: 'BOOKINGS_API_KEY',
-            value: req.body.envVars.BOOKINGS_API_KEY,
-            type: 'plain',
-            target: ['development', 'preview', 'production']
-        }, {
-            key: 'BOOKINGS_SITE_ID',
-            value: req.body.envVars.BOOKINGS_SITE_ID,
-            type: 'plain',
-            target: ['development', 'preview', 'production']
-        },
-            {
-                key: 'NEXT_PUBLIC_BOOKINGS_CHECKOUT_URL',
-                value: req.body.envVars.NEXT_PUBLIC_BOOKINGS_CHECKOUT_URL,
-                type: 'plain',
+        body: JSON.stringify(
+            Object.keys(req.body.envVars).map(key => ({
+                key,
+                value: req.body.envVars[key],
+                type: 'secret',
                 target: ['development', 'preview', 'production']
-            }])
-    })
+            }))
+        ),
+    });
     const bodyEnv = await envResult.json();
 
     res.status(200).json(bodyEnv);
