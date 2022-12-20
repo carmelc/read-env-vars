@@ -70,10 +70,10 @@ export default function Results() {
               setEnvVars({
                   BOOKINGS_API_KEY: apiKey,
                   BOOKINGS_SITE_ID: metasiteId,
-                NEXT_PUBLIC_CONTACTS_FORM_ID: form.id,
-                // TODO: use metasite solution when fully functional
-          NEXT_PUBLIC_BOOKINGS_CHECKOUT_URL: encodeURIComponent(`${sites[0].viewUrl}/_api/dayful/sch/route/booking-form`),
-          NEXT_PUBLIC_PAID_PLANS_CHECKOUT_URL: encodeURIComponent(`${sites[0].viewUrl}/_api/dayful/sch/route/plans-pricing/payment/`),
+                  NEXT_PUBLIC_CONTACTS_FORM_ID: form.id,
+                  // TODO: use metasite solution when fully functional
+                  NEXT_PUBLIC_BOOKINGS_CHECKOUT_URL: encodeURIComponent(`${sites[0].viewUrl}/_api/dayful/sch/route/booking-form`),
+                  NEXT_PUBLIC_PAID_PLANS_CHECKOUT_URL: encodeURIComponent(`${sites[0].viewUrl}/_api/dayful/sch/route/plans-pricing/payment/`),
               });
               localStorage.setItem(StorageKeys.apiKey, apiKey);
               localStorage.setItem(StorageKeys.accountId, accountId);
