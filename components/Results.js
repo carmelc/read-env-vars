@@ -56,7 +56,8 @@ export default function Results() {
         setEnvVars({
           BOOKINGS_API_KEY: apiKey,
           BOOKINGS_SITE_ID: metasiteId,
-          NEXT_PUBLIC_BOOKINGS_CHECKOUT_URL: encodeURIComponent(`${sites[0].viewUrl}/booking-form?dayful=sch`)
+          NEXT_PUBLIC_BOOKINGS_CHECKOUT_URL: encodeURIComponent(`${sites[0].viewUrl}/booking-form?dayful=sch`),
+          NEXT_PUBLIC_PAID_PLANS_CHECKOUT_URL: encodeURIComponent(`${sites[0].viewUrl}/dayful_sch/plans-pricing/payment/`),
         });
         localStorage.setItem(StorageKeys.apiKey, apiKey);
         localStorage.setItem(StorageKeys.accountId, accountId);
