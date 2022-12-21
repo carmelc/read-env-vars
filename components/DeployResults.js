@@ -10,18 +10,22 @@ export default function DeployResults({envVars}) {
   const [netlifyUrl, setNetlifyUrl] = useState('');
 
   const addEnvVarsToVercel = async () => {
-      await fetch('/api/vercel-integration', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json, text/plain, */*',
-        },
-        body: JSON.stringify({
-          code: params.get('code'),
-          envVars,
-        })
-      });
-      router.push(params.get('next'));
+    try {
+        const res = await fetch('/api/vercel-integration', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json, text/plain, */*',
+          },
+          body: JSON.stringify({
+            code: params.get('code'),
+            envVars,
+          })
+        });
+        res.status === 200 && router.push(params.get('next'));
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   useEffect(() => {

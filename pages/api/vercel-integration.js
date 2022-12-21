@@ -16,6 +16,11 @@ const handler = async function (req, res) {
 
     const body = await result.json();
 
+    if (!body.access_token) {
+        res.status(400).json(body);
+        return;
+    }
+
     const accessToken = body.access_token;
     const teamId = body.team_id;
     const projectsJson = await fetch(`https://api.vercel.com/v4/projects${teamId ? `?teamId=${teamId}` : ''}`, {
