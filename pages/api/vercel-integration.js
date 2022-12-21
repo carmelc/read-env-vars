@@ -36,7 +36,7 @@ const handler = async function (req, res) {
             Object.keys(req.body.envVars).map(key => ({
                 key,
                 value: req.body.envVars[key],
-                type: 'secret',
+                type: 'plain',
                 target: ['development', 'preview', 'production']
             }))
         ),
