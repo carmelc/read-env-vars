@@ -57,16 +57,21 @@ export default function Results() {
               });
 
               const {sites} = await sitesResponse.json();
-              const createFormResponse = await fetch('/wix-api/form-schema-service/v4/forms', {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/json',
-                      Authorization: apiKey,
-                      'wix-site-id': metasiteId
-                  },
-                  body: JSON.stringify(formBuilder())
-              });
-              const {form} = await createFormResponse.json();
+              let form = {};
+              try {
+                  const createFormResponse = await fetch('/wix-api/form-schema-service/v4/forms', {
+                      method: 'POST',
+                      headers: {
+                          'Content-Type': 'application/json',
+                          Authorization: apiKey,
+                          'wix-site-id': metasiteId
+                      },
+                      body: JSON.stringify(formBuilder())
+                  });
+                  form = (await createFormResponse.json()).form;
+              } catch (e) {
+                  console.log('Missing permission to create form');
+              }
               setEnvVars({
                   BOOKINGS_API_KEY: apiKey,
                   BOOKINGS_SITE_ID: metasiteId,
