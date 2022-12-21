@@ -15,8 +15,13 @@ const handler = async function (req, res) {
     });
 
     const body = await result.json();
-
     if (!body.access_token) {
+        body.debug = {
+            client_id: process.env.VERCEL_CLIENT_ID,
+            client_secret: process.env.VERCEL_CLIENT_SECRET,
+            code: req.body.code,
+            redirect_uri: `${process.env.URL ?? process.env.NEXT_PUBLIC_VERCEL_URL}/api/vercel-redirect`
+        };
         res.status(400).json(body);
         return;
     }
