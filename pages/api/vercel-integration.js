@@ -10,7 +10,7 @@ const handler = async function (req, res) {
             client_id: process.env.VERCEL_CLIENT_ID,
             client_secret: process.env.VERCEL_CLIENT_SECRET,
             code: req.body.code,
-            redirect_uri: `${process.env.URL ?? process.env.NEXT_PUBLIC_VERCEL_URL}/api/vercel-redirect`
+            redirect_uri: `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/vercel-redirect`
         })
     });
 
